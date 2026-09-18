@@ -9,7 +9,20 @@ assets/css/style.css
 assets/js/main.js
 assets/img/     logo, favicon, hero banner, gallery (work-1 to work-9), video poster
 assets/video/   car-wash.mp4, the intro video
+deploy/         KVM deploy script and nginx vhost (see DEPLOYMENT.md)
+deploy-kvm.cmd  runs the deploy from PowerShell or cmd
 ```
+
+## Deploying
+
+Hosted on the Profitcast KVM, set up like the PPF page:
+
+- Review link: <https://tdmecr-wash-preview.187.127.149.216.nip.io>
+- Live address: <https://wash.lp.thedetailingmafiaecr.com> (once the `*.lp` DNS record exists)
+
+Update it with `.\deploy-kvm.cmd` from the project root. Everything about the
+server, going live and the rules for that box is in `DEPLOYMENT.md`. The
+ready-to-upload zip is kept in the repo for hosts without SSH.
 
 Built to match the PPF landing page at https://tdmecr-ppf.netlify.app/ so the two
 campaigns read as one brand. Content is from `ECR LP Content (2).pdf`.
