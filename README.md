@@ -46,15 +46,17 @@ converted for the web:
 | Hero banner | `hero-banner.webp`, `hero-banner-1280.webp` | 1672 x 941, 1280 x 720 | The client's replacement shot (`Hero Bannr.jpg`). Served with `srcset`, so phones get the smaller file. Preloaded in `<head>`. On desktop it is sized to the hero's height and anchored right; on phones it is cropped to 4:3, aimed 87% across where the car sits. |
 | Link preview | `hero-banner.jpg` | 1200 x 630 | The `og:image`. JPEG because WhatsApp and Facebook previews do not reliably render WebP. |
 | Intro photo | `intro-wash.webp` | 1400 x 1050 (4:3) | In the Car Wash & Detailing section. Cropped to 16/10 once the section stacks, so it does not tower over the copy. |
-| Gallery 1 to 12 | `work-01.webp` to `work-12.webp` | 900 x 675 | No captions on the cards, by request. Marques alternate so no two of the same sit side by side in the 3-up view. |
+| Gallery (9) | `work-01` to `work-08`, `work-12` | 900 x 675 | No captions on the cards, by request. Marques alternate so no two of the same sit side by side in the 3-up view. |
 
 A 4:5 video of a foam wash held the intro slot until 22 September 2026, when the
 client sent this photo for it instead. The video, its poster and the code that
 played them are in the git history if they are ever wanted back.
 
-Gallery photos are numbered from `work-01`, not `work-1`: the server caches
-photos for 30 days, so replacing one under a name that is already out there
-would leave returning visitors on the old picture. New pictures get new names.
+Gallery photos are numbered from `work-01`, not `work-1`, and the nine in use
+skip from `work-08` to `work-12`. Both follow one rule: the server caches photos
+for 30 days, so a name that has been out there never gets different content.
+New pictures get new names, and dropped ones leave their numbers unused rather
+than shuffling the rest along.
 
 ## Changing phone, WhatsApp or address
 
