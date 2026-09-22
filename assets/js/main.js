@@ -468,36 +468,6 @@ const ADS = {
   }
 
   /* ----------------------------------------------------------------------
-     13. Intro video
-         preload="none" in the markup keeps the video's bytes off the critical
-         path, so the hero loads first. This starts it once it is actually on
-         screen (no look-ahead margin: on a typical 900px-tall screen the video
-         sits within 200px of the fold, so a margin would start a 3.7 MB stream
-         during first load; the poster is the video's own first frame, so the
-         late start does not show) and pauses it off screen. A visitor who asked for reduced motion keeps
-         the poster as a still, and so does anyone whose browser refuses to
-         autoplay (iOS Low Power Mode, data saver).
-     ---------------------------------------------------------------------- */
-  function initIntroVideo() {
-    const video = $('.split-video');
-    if (!video || prefersReducedMotion) return;
-
-    const play = () => {
-      const attempt = video.play();
-      if (attempt && attempt.catch) attempt.catch(() => {});
-    };
-
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting) play();
-        else if (!video.paused) video.pause();
-      }, { threshold: 0.01 }).observe(video);
-    } else {
-      play();
-    }
-  }
-
-  /* ----------------------------------------------------------------------
      Utilities
      ---------------------------------------------------------------------- */
   const scrollHandlers = [];
@@ -536,7 +506,6 @@ const ADS = {
     initReveal();
     initAccordion();
     initCarousel();
-    initIntroVideo();
     initHours();
     initFloatingCTAs();
     initHeroParallax();

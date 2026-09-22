@@ -374,19 +374,14 @@ button{ font: inherit; color: inherit; cursor: pointer; }
 /* ==========================================================================
    SPLIT (Intro)
    ========================================================================== */
-/* The media is a 4:5 portrait video, so its column is the narrower one: at an
-   even split it would stand far taller than the copy beside it. */
 .split{
-  display:grid; grid-template-columns: minmax(0, .74fr) minmax(0, 1.26fr);
+  display:grid; grid-template-columns: 1.02fr .98fr;
   gap: clamp(28px, 5vw, 64px); align-items:center;
 }
 .split-media{ position:relative; }
-/* ratio set here as well as in the file, so the box is reserved before a
-   single byte of video arrives and nothing below it jumps */
-.split-video{
-  display:block; width:100%; height:auto; aspect-ratio: 4/5; object-fit:cover;
+.split-media img{
+  width:100%; aspect-ratio: 4/3; object-fit:cover;
   border-radius: var(--radius-lg); border:1px solid var(--border-strong);
-  background: var(--bg-alt);
 }
 .split-media::before{
   content:""; position:absolute; left:-14px; top:-14px; width:96px; height:96px;
@@ -902,9 +897,9 @@ a.info-card:hover .info-link{ gap:12px; }
   .brand img, .footer-brand img{ height:52px; }
   .split{ grid-template-columns: 1fr; }
   .split-media{ order:-1; }
-  /* stacked at full width, a 4:5 video would stand taller than a tablet
-     screen, so it is capped and centred above the copy */
-  .split-media{ width:100%; max-width: 380px; margin-inline:auto; }
+  /* stacked, a 4/3 crop is over 500px tall on its own and the intro section
+     outweighs every other one. A wider crop holds the section in balance. */
+  .split-media img{ aspect-ratio: 16/10; }
   .marquee{ padding: 20px 0; }
   .marquee-row li{ padding: 0 26px; font-size: 12.5px; }
   .visit-grid{ grid-template-columns: 1fr; }

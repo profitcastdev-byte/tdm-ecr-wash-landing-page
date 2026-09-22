@@ -32,7 +32,7 @@ A deploy:
 
 1. Refuses to start if `canonical`, `og:url` or `og:image` in `index.html` do
    not point at `https://wash.lp.thedetailingmafiaecr.com/`.
-2. Uploads only the 19 files the page serves: `index.html` and `assets/`, minus
+2. Uploads only the 21 files the page serves: `index.html` and `assets/`, minus
    the unused logo master. README, the audit report, this file, `deploy/` and
    the zip never leave this machine.
 3. Unpacks beside the live folder and swaps it in, keeping the previous release
@@ -44,12 +44,12 @@ It only ever touches the site's files. It never edits nginx, reloads it or
 changes certificates.
 
 **Edited `style.css` or `main.js`?** Bump `?v=` on both links in `index.html`
-(currently `?v=8`) before deploying. The server tells browsers to keep CSS and
+(currently `?v=9`) before deploying. The server tells browsers to keep CSS and
 JS for a day.
 
-**Replaced a photo or the video?** Give the new file a new name and update the
-reference. Photos and the video are cached for 30 days, so a file swapped under
-the same name stays old for returning visitors.
+**Replaced a photo?** Give the new file a new name and update the reference.
+Photos are cached for 30 days, so a file swapped under the same name stays old
+for returning visitors.
 
 After any change, rebuild the deploy zip and commit it with the change (see
 `.gitignore`).
@@ -142,8 +142,9 @@ Verified after setup:
   lp.meditarina.in, the bare IP) returned 200 before and after
 
 The vhost is the PPF one with the names changed and one addition: a 30-day
-cache rule for `/assets/video/`, since the video keeps its filename like the
-photos do. It caches with `expires` rather than `add_header` for the reason
+cache rule for `/assets/video/`. The page carried a video until 22 September
+2026 and does not now, so that rule currently matches nothing; it is left in
+place for the next one. It caches with `expires` rather than `add_header` for the reason
 given in the PPF `DEPLOYMENT.md`: a location that declares any `add_header`
 silently drops the ones it would inherit from the server block.
 

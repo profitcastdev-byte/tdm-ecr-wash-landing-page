@@ -39,7 +39,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=8">
+<link rel="stylesheet" href="assets/css/style.css?v=9">
 <link rel="preload" as="image" type="image/webp"
       imagesrcset="assets/img/hero-banner-1280.webp 1280w, assets/img/hero-banner.webp 1672w"
       imagesizes="100vw" fetchpriority="high">
@@ -156,13 +156,9 @@
 <section class="section intro" id="about">
   <div class="container split">
     <div class="split-media reveal">
-      <!-- 4:5 portrait video, muted and looping. preload="none" keeps its bytes
-           off the critical path; main.js starts it as it scrolls into view. -->
-      <video class="split-video" muted loop playsinline preload="none"
-             poster="assets/img/car-wash-poster.webp" width="720" height="900"
-             aria-label="A black Range Rover getting a foam wash and pressure rinse at The Detailing Mafia ECR studio">
-        <source src="assets/video/car-wash.mp4" type="video/mp4">
-      </video>
+      <img src="assets/img/intro-wash.webp"
+           alt="A navy blue BMW X3, washed and dried, at The Detailing Mafia ECR studio"
+           width="1400" height="1050" loading="lazy" decoding="async">
     </div>
 
     <div class="split-copy">
@@ -217,39 +213,51 @@
            aria-label="Gallery of cars from our ECR studio, scrollable">
 
         <figure class="slide">
-          <img src="assets/img/work-1.webp" alt="White Hyundai Creta with a black roof at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
+          <img src="assets/img/work-01.webp" alt="Teal Aston Martin Vantage at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
         </figure>
 
         <figure class="slide">
-          <img src="assets/img/work-2.webp" alt="Matte grey Hyundai Creta N Line at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
+          <img src="assets/img/work-02.webp" alt="Grey BMW M2 at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
         </figure>
 
         <figure class="slide">
-          <img src="assets/img/work-3.webp" alt="Black Volkswagen SUV, rear view, at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
+          <img src="assets/img/work-03.webp" alt="Two-tone Mercedes-Maybach S-Class at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
         </figure>
 
         <figure class="slide">
-          <img src="assets/img/work-4.webp" alt="Grey BMW X6, rear view, at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
+          <img src="assets/img/work-04.webp" alt="Grey BMW X6, rear view, at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
         </figure>
 
         <figure class="slide">
-          <img src="assets/img/work-5.webp" alt="White Mercedes-Benz SUV at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
+          <img src="assets/img/work-05.webp" alt="Champagne Mercedes-Benz GLC, rear view, at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
         </figure>
 
         <figure class="slide">
-          <img src="assets/img/work-6.webp" alt="Two-tone Mercedes-Maybach S-Class at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
+          <img src="assets/img/work-06.webp" alt="Blue BMW 2 Series Gran Coupe at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
         </figure>
 
         <figure class="slide">
-          <img src="assets/img/work-7.webp" alt="Yellow Lamborghini Urus, front view, at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
+          <img src="assets/img/work-07.webp" alt="Red Mercedes-Benz SLC roadster at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
         </figure>
 
         <figure class="slide">
-          <img src="assets/img/work-8.webp" alt="Grey BMW 5 Series at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
+          <img src="assets/img/work-08.webp" alt="Black BMW X3 at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
         </figure>
 
         <figure class="slide">
-          <img src="assets/img/work-9.webp" alt="White BMW X1 at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
+          <img src="assets/img/work-09.webp" alt="White Mercedes-Benz GLS at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="slide">
+          <img src="assets/img/work-10.webp" alt="Grey BMW 5 Series at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="slide">
+          <img src="assets/img/work-11.webp" alt="White BMW X1 at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="slide">
+          <img src="assets/img/work-12.webp" alt="Yellow Lamborghini Urus, front view, at our ECR studio" width="900" height="675" loading="lazy" decoding="async">
         </figure>
 
       </div>
@@ -611,6 +619,6 @@
 
 <!-- ?v= is a cache buster: bump it whenever you edit the CSS or JS, or
      returning visitors keep the old file until their cache expires. -->
-<script src="assets/js/main.js?v=8"></script>
+<script src="assets/js/main.js?v=9"></script>
 </body>
 </html>

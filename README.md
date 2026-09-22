@@ -7,8 +7,7 @@ or serve the folder with any static host (Netlify, Vercel, S3, plain nginx).
 index.html
 assets/css/style.css
 assets/js/main.js
-assets/img/     logo, favicon, hero banner, gallery (work-1 to work-9), video poster
-assets/video/   car-wash.mp4, the intro video
+assets/img/     logo, favicon, hero banner, intro photo, gallery (work-01 to work-12)
 deploy/         KVM deploy script and nginx vhost (see DEPLOYMENT.md)
 deploy-kvm.cmd  runs the deploy from PowerShell or cmd
 ```
@@ -37,30 +36,25 @@ campaigns read as one brand. Content is from `ECR LP Content (2).pdf`.
   `class="surface-light"` re-declares the same tokens and everything inside it
   recolours itself. Never hardcode a text or border colour, use a token.
 
-## Images and video
+## Images
 
-All supplied by the client (`ECR.zip`) and converted for the web:
+All supplied by the client (`ECR.zip`, `TDM - Wash - ECR - image.zip`) and
+converted for the web:
 
 | Slot | File | Size | Notes |
 |---|---|---|---|
 | Hero banner | `hero-banner.webp`, `hero-banner-1280.webp` | 1672 x 941, 1280 x 720 | The client's replacement shot (`Hero Bannr.jpg`). Served with `srcset`, so phones get the smaller file. Preloaded in `<head>`. On desktop it is sized to the hero's height and anchored right; on phones it is cropped to 4:3, aimed 87% across where the car sits. |
 | Link preview | `hero-banner.jpg` | 1200 x 630 | The `og:image`. JPEG because WhatsApp and Facebook previews do not reliably render WebP. |
-| Intro video | `assets/video/car-wash.mp4` | 720 x 900 (4:5) | H.264, no audio, 3.7 MB. Supplied at 9:16 and centre-cropped to 4:5; the car stays in frame throughout. |
-| Video poster | `car-wash-poster.webp` | 720 x 900 | The video's own first frame, so the switch to playback is seamless. |
-| Gallery 1 to 9 | `work-1.webp` to `work-9.webp` | 900 x 675 | No captions on the cards, by request. |
+| Intro photo | `intro-wash.webp` | 1400 x 1050 (4:3) | In the Car Wash & Detailing section. Cropped to 16/10 once the section stacks, so it does not tower over the copy. |
+| Gallery 1 to 12 | `work-01.webp` to `work-12.webp` | 900 x 675 | No captions on the cards, by request. Marques alternate so no two of the same sit side by side in the 3-up view. |
 
-The intro video downloads nothing until it nears the screen (`preload="none"`),
-then plays muted on a loop and pauses when scrolled away. It has no controls, by
-request. A visitor who asks for reduced motion sees the poster as a still.
+A 4:5 video of a foam wash held the intro slot until 22 September 2026, when the
+client sent this photo for it instead. The video, its poster and the code that
+played them are in the git history if they are ever wanted back.
 
-To replace the video, keep it 4:5, H.264 and silent, with the index at the front
-of the file so it can start playing before it has fully downloaded:
-
-```bash
-ffmpeg -i new.mp4 -vf "crop=iw:iw*5/4,scale=720:900" -an -c:v libx264 -crf 28 -preset slow -pix_fmt yuv420p -movflags +faststart assets/video/car-wash.mp4
-```
-
-Then regenerate `car-wash-poster.webp` from its first frame.
+Gallery photos are numbered from `work-01`, not `work-1`: the server caches
+photos for 30 days, so replacing one under a name that is already out there
+would leave returning visitors on the old picture. New pictures get new names.
 
 ## Changing phone, WhatsApp or address
 
@@ -100,7 +94,7 @@ button added later is tracked automatically.
 | Desktop | Logo left, Call Now in the header, hero CTA pair, floating Call (bottom left) and WhatsApp (bottom right), 3 gallery slides per view |
 | <= 1080px | 2 gallery slides per view |
 | <= 980px | Hero copy goes full width over the banner |
-| <= 900px | Intro, why-us cards and location stack to one column; the intro video is capped at 380px wide and centred so the section stays in balance |
+| <= 900px | Intro, why-us cards and location stack to one column; the intro photo switches to a 16/10 crop so the section stays in balance |
 | <= 640px | Logo centred and alone in the header, hero CTA pair removed (the intro and final banner keep theirs, full width), sticky Call + WhatsApp bar pinned to the bottom, floating buttons lift above it, 1 slide per view |
 
 The floating buttons appear once the visitor has scrolled past 300px. The sticky
