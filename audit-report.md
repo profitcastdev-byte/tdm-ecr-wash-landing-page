@@ -4,6 +4,10 @@
 **Page:** `index.html` + `assets/` (static site, no build step)
 **Traffic:** Google Ads, mostly phones
 
+> Still current, with one change since: on 22 September 2026 the intro video was
+> replaced by a photo and the gallery was reshot, so the page is lighter than the
+> figures below and nothing autoplays any more.
+
 ## Verdict: DEPLOY-READY ✅ YES
 
 No blocking issues. One loading problem was found and fixed during this QA. Five
