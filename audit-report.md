@@ -52,12 +52,10 @@ checks remain that can only be done on the live URL, listed at the end.
 
 These cannot be checked from the files.
 
-1. **Add one DNS record at Hostinger before launch.** The page's address is
-   `https://wash.lp.thedetailingmafiaecr.com/`, following the Profitcast KVM
-   convention (the PPF page is `ppf.lp.`), and its canonical and link-preview
-   URLs point there. That name only resolves once the wildcard record
-   `A *.lp -> 187.127.149.216` exists; the same record serves the PPF page.
-   Until then the page is reachable on its preview address only.
+1. ~~Add one DNS record at Hostinger before launch.~~ **Done 24 September
+   2026.** The wildcard `A *.lp -> 187.127.149.216` is live, and the page
+   answers over HTTPS at `https://wash.lp.thedetailingmafiaecr.com/`, which is
+   the address its canonical and link-preview URLs name.
 2. **Test the conversions on the live URL.** Open it with Google Tag Assistant,
    tap Call and WhatsApp once each, and confirm both conversions register. In
    Google Ads (Goals > Conversions) both actions should show "Recording

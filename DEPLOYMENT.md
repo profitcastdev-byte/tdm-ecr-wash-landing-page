@@ -4,10 +4,10 @@
 | --- | --- |
 | Server | Profitcast KVM: Hostinger VPS `root@187.127.149.216` (srv1575430, Ubuntu 24.04, nginx 1.24) |
 | Review link | <https://tdmecr-wash-preview.187.127.149.216.nip.io> (live now, HTTPS, kept out of Google with noindex) |
-| Live address | <https://wash.lp.thedetailingmafiaecr.com> (waiting on one DNS record, see *Going live*) |
+| Live address | <https://wash.lp.thedetailingmafiaecr.com> (live since 24 September 2026, HTTPS, indexable) |
 | Files | `/var/www/wash.lp.thedetailingmafiaecr.com`, previous release at `.prev` |
 | nginx vhost | `/etc/nginx/sites-available/wash.lp.thedetailingmafiaecr.com`, source in `deploy/nginx/` |
-| Certificate | certbot lineage `wash.lp.thedetailingmafiaecr.com`, renews automatically |
+| Certificate | certbot lineage `wash.lp.thedetailingmafiaecr.com`, covers the live name and the review link, renews automatically, valid to 23 December 2026 |
 
 Set up the same way as the PPF page (`TDM ECR PPF - Landing Page`), whose
 `DEPLOYMENT.md` this follows. SSH is key-based from this PC
@@ -58,41 +58,50 @@ After any change, rebuild the deploy zip and commit it with the change (see
 
 ## Going live on wash.lp.thedetailingmafiaecr.com
 
+**Done on 24 September 2026.** The address is live over HTTPS. Steps 1 to 4
+below are the record of how; step 5 is the one action still outstanding.
+
 The domain's DNS is managed at Hostinger. The main website stays exactly where
 it is; only names under `.lp` point at the KVM.
 
-1. **Add one DNS record**, if it is not there already. hPanel → Domains →
-   thedetailingmafiaecr.com → DNS / Nameservers:
+1. **The DNS record** (added by the client on 24 September 2026). hPanel →
+   Domains → thedetailingmafiaecr.com → DNS / Nameservers:
 
    | Type | Name | Points to | TTL |
    | --- | --- | --- | --- |
-   | `A` | `*.lp` | `187.127.149.216` | default |
+   | `A` | `*.lp` | `187.127.149.216` | 1 hour |
 
-   This is the same wildcard the PPF page is waiting on: one record serves
-   `ppf.lp`, `wash.lp` and any later landing page. On 18 September 2026 it did
-   not exist yet (neither name resolved at 8.8.8.8).
+   A wildcard: one record serves `ppf.lp`, `wash.lp` and any later landing
+   page, which then needs only its own vhost and certificate on the server.
 
-2. **Wait until public DNS returns the KVM:**
+2. **Public DNS returns the KVM.** Both Google and Cloudflare answer
+   `187.127.149.216` for `wash.lp` and `ppf.lp`:
 
    ```powershell
    Resolve-DnsName wash.lp.thedetailingmafiaecr.com -Server 8.8.8.8
    ```
 
-3. **Add the live name to the certificate**, on the server:
+3. **The live name was added to the certificate:**
 
    ```bash
    ssh root@187.127.149.216
    certbot --nginx --non-interactive --redirect --expand --cert-name wash.lp.thedetailingmafiaecr.com -d tdmecr-wash-preview.187.127.149.216.nip.io -d wash.lp.thedetailingmafiaecr.com
+   certbot renew --dry-run --no-random-sleep-on-renew --cert-name wash.lp.thedetailingmafiaecr.com
    ```
 
-   This fails until step 2 passes. Until it runs, `http://wash.lp.thedetailingmafiaecr.com`
-   answers 404. That is certbot's placeholder, not a fault.
+   Before this runs, `http://wash.lp.thedetailingmafiaecr.com` answers 404.
+   That is certbot's placeholder, not a fault.
 
-4. **Check:** `.\deploy-kvm.cmd --check` should show 200 for both addresses.
+4. **Checked after issuing:** one Let's Encrypt certificate covers both names
+   (SAN: the live name and the review link), valid to 23 December 2026, renewal
+   dry run passes, `nginx -t` clean. HTTP 301s to HTTPS. `--check` shows 200 for
+   both addresses and 18 identical files. The live name sends no
+   `X-Robots-Tag`, so Google may index it, while the review link keeps its
+   `noindex`. Five neighbouring sites returned 200 before and after.
 
 5. **Point the Google Ads final URLs** at `https://wash.lp.thedetailingmafiaecr.com/`,
    then make one real Call click and one WhatsApp click from a phone and
-   confirm both land in Google Ads → Goals → Conversions.
+   confirm both land in Google Ads → Goals → Conversions. **Still outstanding.**
 
 If an office PC shows **ERR_SSL_PROTOCOL_ERROR** right after the switch while a
 phone on mobile data loads the page fine, the office router is serving a cached

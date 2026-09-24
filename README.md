@@ -17,7 +17,7 @@ deploy-kvm.cmd  runs the deploy from PowerShell or cmd
 Hosted on the Profitcast KVM, set up like the PPF page:
 
 - Review link: <https://tdmecr-wash-preview.187.127.149.216.nip.io>
-- Live address: <https://wash.lp.thedetailingmafiaecr.com> (once the `*.lp` DNS record exists)
+- Live address: <https://wash.lp.thedetailingmafiaecr.com> (live over HTTPS since 24 September 2026)
 
 Update it with `.\deploy-kvm.cmd` from the project root. Everything about the
 server, going live and the rules for that box is in `DEPLOYMENT.md`. The
